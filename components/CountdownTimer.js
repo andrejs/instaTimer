@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import { ProgressCircle } from 'react-native-svg-charts'
 
 class CountdownTimer extends Component {
@@ -25,7 +25,7 @@ class CountdownTimer extends Component {
       clearInterval(this.countdownInterval);
     }
   }
-  
+
   componentWillUnmount() {
     clearInterval(this.countdownInterval);
   }
@@ -39,13 +39,16 @@ class CountdownTimer extends Component {
       <View style={styles.container}>
         <Text style={styles.number}>{seconds}</Text>
         <Text style={styles.text}>seconds</Text>
-        <View style={styles.clock} />
+        <View style={styles.clock}>
+          <View style={styles.pointer} />
+          <Image source={{uri:'../assets/logo.png'}} style={{ width: 200, height: 200 }} />
+        </View>
         <ProgressCircle
           style={{ height: 420}}
           backgroundColor={'#1e2326'}
           progress={progress}
           progressColor={'#e63b09'}
-          strokeWidth={60}
+          strokeWidth={55}
           cornerRadius={1}
         />
       </View>
@@ -65,7 +68,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#fff',
-    fontSize: 20,
+    fontSize: 15,
     textAlign: 'center',
     marginTop: -20,
   },
@@ -82,7 +85,15 @@ const styles = StyleSheet.create({
     top: 100,
     width: 350,
   },
-
+  pointer: {
+    backgroundColor: '#fff',
+    height: 5,
+    left: 112,
+    position: 'absolute',
+    top: 113,
+    transform: [{ rotate: '-90deg'}],
+    width: 111,
+  },
 });
 
 export default CountdownTimer
