@@ -44,12 +44,6 @@ class CountdownTimer extends Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#2c343a',
-    textAlign: 'center',
-  },
-  text: {
-    color: '#fff',
-    fontSize: 20,
-    textAlign: 'center',
   },
   number: {
     color: '#fff',
@@ -57,11 +51,19 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  text: {
+    color: '#fff',
+    fontSize: 20,
+    textAlign: 'center',
+  },
   clock: {
+    alignItems: 'center',
     borderWidth: 5,
     borderColor: '#394349',
     borderRadius: 350/2,
     height: 350,
+    justifyContent: 'center',
+    marginTop: 80,
     width: 350,
   },
   seconds: {
@@ -73,7 +75,8 @@ const styles = StyleSheet.create({
   pointer: {
     backgroundColor: '#fff',
     height: 5,
-    width: 300,
+    transform: [{ rotate: '90deg'}],
+    width: 200,
   },
 });
 
