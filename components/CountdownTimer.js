@@ -35,13 +35,15 @@ class CountdownTimer extends Component {
       <View style={styles.container}>
         <Text style={styles.number}>{seconds}</Text>
         <Text style={styles.text}>seconds</Text>
-        <ProgressCircle
-          style={{ height: 200 }}
-          progress={progress}
-          progressColor={'rgb(134, 65, 244)'}
-          strokeWidth={69}
-          cornerRadius={1}
-        />
+        <View style={styles.clock}></View>
+          <ProgressCircle
+            style={{ height: 420}}
+            backgroundColor={'#1e2326'}
+            progress={progress}
+            progressColor={'#e63b09'}
+            strokeWidth={60}
+            cornerRadius={1}
+          />
       </View>
     )
   }
@@ -53,7 +55,7 @@ const styles = StyleSheet.create({
   },
   number: {
     color: '#fff',
-    fontSize: 120,
+    fontSize: 100,
     fontWeight: 'bold',
     textAlign: 'center',
   },
@@ -61,7 +63,22 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 20,
     textAlign: 'center',
+    marginTop: -20,
   },
+  clock: {
+    alignItems: 'center',
+    borderWidth: 5,
+    borderColor: '#394349',
+    borderRadius: 350/2,
+    height: 350,
+    justifyContent: 'center',
+    left: -115,
+    marginTop: 80,
+    position: 'absolute',
+    top: 100,
+    width: 350,
+  },
+
 });
 
 export default CountdownTimer
