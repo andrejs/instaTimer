@@ -6,12 +6,14 @@ class CountdownTimer extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      count: props.from,
+      count: 0,
       progress: 0
     }
   }
 
   componentDidMount() {
+    this.resetCountdown();
+
     this.countdownInterval = setInterval(() => {
       this.setState(prevState => ({
         count: prevState.count - 0.1,
@@ -28,6 +30,15 @@ class CountdownTimer extends Component {
 
   componentWillUnmount() {
     clearInterval(this.countdownInterval);
+  }
+
+  resetCountdown = () => {
+    this.countdownInterval || clearInterval(this.countdownInterval);
+
+    this.setState({
+      count: this.props.from,
+      progress: 0
+    });
   }
 
   render () {
@@ -55,10 +66,8 @@ class CountdownTimer extends Component {
           cornerRadius={1}
         />
         <Button
-            onPress={() => {
-              
-            }}
-            title="reset"
+            onPress={this.resetCountdown}
+            title="Reset"
         />
       </View>
     )
