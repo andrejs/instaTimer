@@ -13,13 +13,6 @@ class CountdownTimer extends Component {
 
   componentDidMount() {
     this.resetCountdown();
-
-    this.countdownInterval = setInterval(() => {
-      this.setState(prevState => ({
-        count: prevState.count - 0.1,
-        progress: 1 - (prevState.count - 0.1) / this.props.from
-      }))
-    }, 100);
   }
 
   componentDidUpdate() {
@@ -33,12 +26,19 @@ class CountdownTimer extends Component {
   }
 
   resetCountdown = () => {
-    this.countdownInterval || clearInterval(this.countdownInterval);
+    !this.countdownInterval || clearInterval(this.countdownInterval);
 
     this.setState({
       count: this.props.from,
       progress: 0
     });
+
+    this.countdownInterval = setInterval(() => {
+      this.setState(prevState => ({
+        count: prevState.count - 0.1,
+        progress: 1 - (prevState.count - 0.1) / this.props.from
+      }))
+    }, 100);
   }
 
   render () {
