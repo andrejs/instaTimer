@@ -9,7 +9,8 @@ It might ask for CocoaPods and maybe it fails so we need to run
 cd ./instaTimer/ios && pod install
 
 # To run do
-`expo start` (or just `npm start`)
+1. `cd ./instaTimer`
+2. `expo start` (or just `npm start`)
 
 It will start the Metro Bundler and open it in a browser tab.
 
