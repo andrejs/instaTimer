@@ -41,7 +41,10 @@ class CountdownTimer extends Component {
         <Text style={styles.text}>seconds</Text>
         <View style={styles.clock}>
           <View style={styles.pointer} />
-          <Image source={{uri:'../assets/logo.png'}} style={{ width: 200, height: 200 }} />
+          <Image
+            style={{width: 200, height: 200}}
+            source={require('../assets/logo.png')}
+          />
         </View>
         <ProgressCircle
           style={{ height: 420}}
