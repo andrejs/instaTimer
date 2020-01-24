@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import {View, Text, StyleSheet, Image, Button} from 'react-native';
 import { ProgressCircle } from 'react-native-svg-charts'
 
 class CountdownTimer extends Component {
@@ -42,7 +42,7 @@ class CountdownTimer extends Component {
         <View style={styles.clock}>
           <View style={styles.pointer} />
           <Image
-            style={{width: 200, height: 200}}
+            style={styles.logo}
             source={require('../assets/logo.png')}
           />
         </View>
@@ -51,8 +51,14 @@ class CountdownTimer extends Component {
           backgroundColor={'#1e2326'}
           progress={progress}
           progressColor={'#e63b09'}
-          strokeWidth={55}
+          strokeWidth={56}
           cornerRadius={1}
+        />
+        <Button
+            onPress={() => {
+              
+            }}
+            title="reset"
         />
       </View>
     )
@@ -87,15 +93,23 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 100,
     width: 350,
+    zIndex: 1,
   },
   pointer: {
     backgroundColor: '#fff',
-    height: 5,
-    left: 112,
+    height: 3,
+    left: 118,
     position: 'absolute',
-    top: 113,
+    top: 108,
     transform: [{ rotate: '-90deg'}],
-    width: 111,
+    width: 100,
+  },
+  logo: {
+    position: 'absolute',
+    top: 30,
+    left: 147,
+    height: 40,
+    width: 40,
   },
 });
 
