@@ -6,30 +6,34 @@ class CountdownTimer extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      count: props.from
+      count: props.from,
+      progress: 0
     }
   }
 
   componentDidMount() {
     this.countdownInterval = setInterval(() => {
       this.setState(prevState => ({
-        count: prevState.count - 0.1
+        count: prevState.count - 0.1,
+        progress: 1 - (prevState.count - 0.1) / this.props.from
       }))
     }, 100);
-
-    setTimeout(() => {
-      clearInterval(this.countdownInterval);
-    }, this.props.from * 1000);
   }
 
+  componentDidUpdate() {
+    if (this.state.count <= 0) {
+      clearInterval(this.countdownInterval);
+    }
+  }
+  
   componentWillUnmount() {
     clearInterval(this.countdownInterval);
   }
 
   render () {
     const count = this.state.count;
+    const progress = this.state.progress;
     const seconds = Math.round(count);
-    const progress = 1 - count / this.props.from;
 
     return (
       <View style={styles.container}>
