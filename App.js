@@ -5,7 +5,7 @@ import CountdownTimer from './components/CountdownTimer'
 export default function App() {
   return (
     <View style={styles.container}>
-      <CountdownTimer from={5} />
+      <CountdownTimer from={30} />
     </View>
   );
 }

@@ -13,9 +13,9 @@ class CountdownTimer extends Component {
   componentDidMount() {
     this.countdownInterval = setInterval(() => {
       this.setState(prevState => ({
-        count: prevState.count - 1
+        count: prevState.count - 0.1
       }))
-    }, 1000);
+    }, 100);
 
     setTimeout(() => {
       clearInterval(this.countdownInterval);
@@ -28,13 +28,20 @@ class CountdownTimer extends Component {
 
   render () {
     const count = this.state.count;
-    const progress = count / this.props.from;
+    const seconds = Math.round(count);
+    const progress = 1 - count / this.props.from;
 
     return (
       <View style={styles.container}>
-        <Text style={styles.number}>{count}</Text>
+        <Text style={styles.number}>{seconds}</Text>
         <Text style={styles.text}>seconds</Text>
-        <ProgressCircle style={{ height: 200 }} progress={progress} progressColor={'rgb(134, 65, 244)'} />
+        <ProgressCircle
+          style={{ height: 200 }}
+          progress={progress}
+          progressColor={'rgb(134, 65, 244)'}
+          strokeWidth={69}
+          cornerRadius={1}
+        />
       </View>
     )
   }
