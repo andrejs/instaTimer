@@ -35,15 +35,15 @@ class CountdownTimer extends Component {
       <View style={styles.container}>
         <Text style={styles.number}>{seconds}</Text>
         <Text style={styles.text}>seconds</Text>
-        <View style={styles.clock}></View>
-          <ProgressCircle
-            style={{ height: 420}}
-            backgroundColor={'#1e2326'}
-            progress={progress}
-            progressColor={'#e63b09'}
-            strokeWidth={60}
-            cornerRadius={1}
-          />
+        <View style={styles.clock} />
+        <ProgressCircle
+          style={{ height: 420}}
+          backgroundColor={'#1e2326'}
+          progress={progress}
+          progressColor={'#e63b09'}
+          strokeWidth={60}
+          cornerRadius={1}
+        />
       </View>
     )
   }
