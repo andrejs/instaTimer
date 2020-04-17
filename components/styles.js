@@ -72,13 +72,13 @@ const styles = StyleSheet.create({
   resetButton: {
     backgroundColor: colorPrimary,
     borderRadius: 2,
-    height: 40,
   },
   resetText: {
     color: colorPositive,
     fontWeight: 'bold',
     textAlign: 'center',
     marginTop: 8,
+    marginBottom: 10,
   },
 });
 
