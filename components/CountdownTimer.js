@@ -32,8 +32,10 @@ class CountdownTimer extends Component {
     clearInterval(this.countdownInterval);
   }
 
-  resetCountdown = (from) => {
+  resetCountdown = () => {
     !this.countdownInterval || clearInterval(this.countdownInterval);
+
+    const from = this.props.from;
 
     this.setState({
       count: from,
@@ -99,13 +101,11 @@ class CountdownTimer extends Component {
           editable={true}
           value={this.props.from}
           onChange={(num) => {
-            this.setState({
-              max: num
-            })
+            console.warn(num);
           }}
         />
         <Button
-            onPress={this.resetCountdown.bind(this.props.from)}
+            onPress={this.resetCountdown}
             title="Reset"
         />
       </View>
