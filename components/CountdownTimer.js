@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
-import {View, Text, StyleSheet, Image, Button, Animated, Dimensions, Easing} from 'react-native';
+import {
+  View, Text, Image, Button, Animated, Easing, TouchableOpacity,
+} from 'react-native';
 import { ProgressCircle } from 'react-native-svg-charts';
 import InputSpinner from "react-native-input-spinner";
+import styles from './styles';
+
+const colorPrimary = '#e63b09';
+const colorSecondaryDark = '#1e2326';
+const colorSecondaryLight = '#394349';
 
 class CountdownTimer extends Component {
   constructor(props) {
@@ -92,23 +99,21 @@ class CountdownTimer extends Component {
           <View style={styles.pointerDot} />
           <View style={styles.pointerDotTrans} />
         </View>
-
         <ProgressCircle
           style={{ height: 420}}
-          backgroundColor={'#1e2326'}
+          backgroundColor={colorSecondaryDark}
           progress={progress}
-          progressColor={'#e63b09'}
+          progressColor={colorPrimary}
           strokeWidth={70}
           cornerRadius={1}
         />
-
         <InputSpinner
           max={600}
           min={15}
           step={15}
           textColor={"#fff"}
-          colorMax={"#f04048"}
-          colorMin={"#40c5f4"}
+          colorMax={colorSecondaryLight}
+          colorMin={colorSecondaryLight}
           editable={true}
           value={this.props.from}
           onChange={(num) => {
@@ -116,80 +121,15 @@ class CountdownTimer extends Component {
           }}
           style={styles.spinner}
         />
-        <Button
-            onPress={this.resetCountdown}
-            title="Reset"
-        />
+        <TouchableOpacity
+          style={styles.resetButton}
+          onPress={this.resetCountdown}
+          underlayColor='#fff'>
+          <Text style={styles.resetText}>Reset</Text>
+        </TouchableOpacity>
       </View>
     )
   }
 }
-
-const {width} = Dimensions.get('screen');
-const SIZE = width * 0.9;
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#2c343a',
-  },
-  containerAlign: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 1,
-    top: 210,
-  },
-  number: {
-    color: '#fff',
-    fontSize: 100,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  text: {
-    color: '#fff',
-    fontSize: 15,
-    textAlign: 'center',
-    marginTop: -20,
-  },
-  clock: {
-    borderWidth: 5,
-    borderColor: '#394349',
-    borderRadius: SIZE / 0.4,
-    height: SIZE * 0.9,
-    width: SIZE * 0.9,
-    position: 'absolute',
-  },
-  pointer: {
-    backgroundColor: '#fff',
-    height: 100,
-    left: -3,
-    position: 'absolute',
-    top: -100,
-    width: 6,
-  },
-  pointerDotTrans: {
-    backgroundColor: '#fff',
-    borderRadius: SIZE / 0.4,
-    height: SIZE / 20,
-    opacity: 0.3,
-    position: 'absolute',
-    width: SIZE / 20,
-  },
-  pointerDot: {
-    backgroundColor: '#fff',
-    borderRadius: SIZE / 0.4,
-    height: SIZE / 35,
-    position: 'absolute',
-    width: SIZE / 35,
-  },
-  logo: {
-    position: 'absolute',
-    top: -127,
-    left: -20,
-    height: 40,
-    width: 40,
-  },
-  spinner: {
-    top: -15,
-  }
-});
 
 export default CountdownTimer
