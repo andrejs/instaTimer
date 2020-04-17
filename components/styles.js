@@ -4,29 +4,43 @@ const {width} = Dimensions.get('screen');
 const sizeScreen = width * 0.9;
 const colorPositive = '#fff';
 const colorPrimary = '#e63b09';
-const colorSecondaryLight = '#394349';
+const colorSecondary = '#1c3742';
+const colorSecondaryLight = '#22444f';
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: colorSecondary,
     flex: 1,
+    alignSelf: 'stretch',
   },
-  containerAlign: {
+  containerCounter: {
+    flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 1,
-    top: 210,
+    justifyContent: 'flex-start',
+    marginTop: 140,
   },
-  number: {
+  counterNr: {
     color: colorPositive,
     fontSize: 100,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginTop: 80,
   },
-  text: {
+  counterText: {
     color: colorPositive,
-    fontSize: 15,
+    fontSize: 14,
     textAlign: 'center',
+    marginTop: -15,
+  },
+  containerClock: {
+    justifyContent: 'center',
+    top: 100,
+    marginBottom: 250,
+  },
+  containerPointers: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    top: -75,
+    zIndex: 1,
   },
   clock: {
     borderWidth: 5,
@@ -38,21 +52,20 @@ const styles = StyleSheet.create({
   },
   pointer: {
     backgroundColor: colorPositive,
-    height: 100,
+    height: 110,
     left: -3,
     position: 'absolute',
-    top: -100,
+    top: -110,
     width: 6,
   },
-  pointerDotTrans: {
-    backgroundColor: colorPositive,
+  pointerDot: {
+    backgroundColor: '#e56445',
     borderRadius: sizeScreen / 0.4,
     height: sizeScreen / 20,
-    opacity: 0.3,
     position: 'absolute',
     width: sizeScreen / 20,
   },
-  pointerDot: {
+  pointerDotSm: {
     backgroundColor: colorPositive,
     borderRadius: sizeScreen / 0.4,
     height: sizeScreen / 35,
@@ -61,24 +74,40 @@ const styles = StyleSheet.create({
   },
   logo: {
     position: 'absolute',
-    top: -127,
+    top: -137,
     left: -20,
     height: 40,
     width: 40,
   },
-  spinner: {
-    top: -15,
+  containerButtons: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    marginBottom: 70,
+  },
+  setTimer: {
+    top: 30,
+    width: sizeScreen * 0.9,
+  },
+  setTimerButtons: {
+    borderWidth: 3,
+    borderColor: colorPositive,
+    borderRadius: sizeScreen,
+    height: 50,
+    width: 50,
   },
   resetButton: {
     backgroundColor: colorPrimary,
-    borderRadius: 2,
+    borderRadius: 3,
+    width: sizeScreen * 0.9,
   },
   resetText: {
     color: colorPositive,
+    fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginTop: 8,
-    marginBottom: 10,
+    marginTop: 20,
+    marginBottom: 20,
   },
 });
 

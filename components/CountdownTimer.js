@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import {
-  View, Text, Image, Animated, Easing, TouchableOpacity,
-} from 'react-native';
+import { View, Text, Image, Animated, Easing, TouchableHighlight, Dimensions } from 'react-native';
 import { ProgressCircle } from 'react-native-svg-charts';
 import InputSpinner from "react-native-input-spinner";
 import styles from './styles';
 
+const {width} = Dimensions.get('screen');
+const sizeScreen = width / 2.8;
+const colorPositive = '#fff';
 const colorPrimary = '#e63b09';
-const colorSecondaryDark = '#1e2326';
-const colorSecondaryLight = '#394349';
+const colorSecondaryDark = '#13272d';
 
 class CountdownTimer extends Component {
   constructor(props) {
@@ -85,48 +85,65 @@ class CountdownTimer extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.number}>{seconds}</Text>
-        <Text style={styles.text}>seconds</Text>
-        <View style={styles.containerAlign}>
-          <View style={styles.clock} />
-          <Animated.View style={{transform: [{rotate: spin}] }}>
-            <View style={[styles.pointer]} />
-            <Image
-              style={styles.logo}
-              source={require('../assets/logo.png')}
-            />
-          </Animated.View>
-          <View style={styles.pointerDot} />
-          <View style={styles.pointerDotTrans} />
+        <View style={styles.containerCounter}>
+          <Text style={styles.counterNr}>{seconds}</Text>
+          <Text style={styles.counterText}>seconds</Text>
         </View>
-        <ProgressCircle
-          style={{ height: 420}}
-          backgroundColor={colorSecondaryDark}
-          progress={progress}
-          progressColor={colorPrimary}
-          strokeWidth={70}
-          cornerRadius={1}
-        />
-        <InputSpinner
-          max={600}
-          min={15}
-          step={15}
-          textColor={"#fff"}
-          colorMax={colorSecondaryLight}
-          colorMin={colorSecondaryLight}
-          editable={true}
-          value={this.props.from}
-          onChange={(num) => {
-            this.updateFrom(num);
-          }}
-          style={styles.spinner}
-        />
-        <TouchableOpacity
-          style={styles.resetButton}
-          onPress={this.resetCountdown}
-          underlayColor='#fff'>
-          <Text style={styles.resetText}>Reset</Text>
-        </TouchableOpacity>
+        <View style={styles.containerClock}>
+          <ProgressCircle
+              style={{height: sizeScreen}}
+              backgroundColor={colorSecondaryDark}
+              progress={progress}
+              progressColor={colorPrimary}
+              strokeWidth={70}
+              cornerRadius={1}
+          />
+          <View style={styles.containerPointers}>
+            <View style={styles.clock} />
+            <Animated.View style={{transform: [{rotate: spin}] }}>
+              <View style={[styles.pointer]} />
+              <Image
+                style={styles.logo}
+                source={require('../assets/logo.png')}
+              />
+            </Animated.View>
+            <View style={styles.pointerDot} />
+            <View style={styles.pointerDotSm} />
+          </View>
+        </View>
+        <View style={styles.containerButtons}>
+          <TouchableHighlight
+              style={styles.resetButton}
+              onPress={this.resetCountdown}
+              underlayColor={colorSecondaryDark}>
+            <Text style={styles.resetText}>RESET</Text>
+          </TouchableHighlight>
+          <InputSpinner
+            max={600}
+            min={15}
+            step={15}
+            textColor={colorPositive}
+            fontSize={16}
+            editable={true}
+            value={this.props.from}
+            buttonLeftImage={
+              <Image
+                  style={styles.setTimerButtons}
+                  source={require('../assets/minus.png')}
+              />
+            }
+            buttonRightImage={
+              <Image
+                  style={styles.setTimerButtons}
+                  source={require('../assets/plus.png')}
+              />
+            }
+            onChange={(num) => {
+              this.updateFrom(num);
+            }}
+            style={styles.setTimer}
+          />
+        </View>
       </View>
     )
   }
