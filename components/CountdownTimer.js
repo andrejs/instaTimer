@@ -80,6 +80,8 @@ class CountdownTimer extends Component {
               source={require('../assets/logo.png')}
             />
           </Animated.View>
+          <View style={styles.pointerDot} />
+          <View style={styles.pointerDotTrans} />
         </View>
 
         <ProgressCircle
@@ -87,7 +89,7 @@ class CountdownTimer extends Component {
           backgroundColor={'#1e2326'}
           progress={progress}
           progressColor={'#e63b09'}
-          strokeWidth={56}
+          strokeWidth={70}
           cornerRadius={1}
         />
 
@@ -146,10 +148,25 @@ const styles = StyleSheet.create({
   pointer: {
     backgroundColor: '#fff',
     height: 100,
-    left: -5,
+    left: -3,
     position: 'absolute',
     top: -100,
     width: 6,
+  },
+  pointerDotTrans: {
+    backgroundColor: '#fff',
+    borderRadius: SIZE / 0.4,
+    height: SIZE / 20,
+    opacity: 0.3,
+    position: 'absolute',
+    width: SIZE / 20,
+  },
+  pointerDot: {
+    backgroundColor: '#fff',
+    borderRadius: SIZE / 0.4,
+    height: SIZE / 35,
+    position: 'absolute',
+    width: SIZE / 35,
   },
   logo: {
     position: 'absolute',
