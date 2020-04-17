@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import {View, Text, StyleSheet, Image, Button} from 'react-native';
-import { ProgressCircle } from 'react-native-svg-charts'
+import {View, Text, StyleSheet, Image, Button, Animated, Dimensions, Easing} from 'react-native';
+import { ProgressCircle } from 'react-native-svg-charts';
+const {width} = Dimensions.get('screen');
+const SIZE = width * 0.9;
 
 class CountdownTimer extends Component {
+  spinValue = new Animated.Value(0);
+
   constructor (props) {
     super(props);
 
@@ -40,24 +44,39 @@ class CountdownTimer extends Component {
         progress: 1 - (prevState.count - 0.1) / from
       }))
     }, 100);
+
+    Animated.timing(this.spinValue, {
+      toValue: 1,
+      duration: from * 1085,
+      easing: Easing.linear,
+      useNativeDriver: true
+    }).start();
   };
 
   render () {
     const count = this.state.count;
     const progress = this.state.progress;
     const seconds = Math.round(count);
+    const spin = this.spinValue.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['0deg', '360deg']
+    });
 
     return (
       <View style={styles.container}>
         <Text style={styles.number}>{seconds}</Text>
         <Text style={styles.text}>seconds</Text>
-        <View style={styles.clock}>
-          <View style={styles.pointer} />
-          <Image
-            style={styles.logo}
-            source={require('../assets/logo.png')}
-          />
+        <View style={styles.containerAlign}>
+          <View style={styles.clock} />
+          <Animated.View style={{transform: [{rotate: spin}] }}>
+            <View style={[styles.pointer]} />
+            <Image
+              style={styles.logo}
+              source={require('../assets/logo.png')}
+            />
+          </Animated.View>
         </View>
+
         <ProgressCircle
           style={{ height: 420}}
           backgroundColor={'#1e2326'}
@@ -66,6 +85,7 @@ class CountdownTimer extends Component {
           strokeWidth={56}
           cornerRadius={1}
         />
+
         <Button
             onPress={this.resetCountdown.bind(this.props.from)}
             title="Reset"
@@ -78,6 +98,12 @@ class CountdownTimer extends Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#2c343a',
+  },
+  containerAlign: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 1,
+    top: 210,
   },
   number: {
     color: '#fff',
@@ -92,32 +118,25 @@ const styles = StyleSheet.create({
     marginTop: -20,
   },
   clock: {
-    alignItems: 'center',
     borderWidth: 5,
     borderColor: '#394349',
-    borderRadius: 350/2,
-    height: 350,
-    justifyContent: 'center',
-    left: -115,
-    marginTop: 80,
+    borderRadius: SIZE / 0.4,
+    height: SIZE * 0.9,
+    width: SIZE * 0.9,
     position: 'absolute',
-    top: 100,
-    width: 350,
-    zIndex: 1,
   },
   pointer: {
     backgroundColor: '#fff',
-    height: 3,
-    left: 118,
+    height: 100,
+    left: -5,
     position: 'absolute',
-    top: 108,
-    transform: [{ rotate: '-90deg'}],
-    width: 100,
+    top: -100,
+    width: 6,
   },
   logo: {
     position: 'absolute',
-    top: 30,
-    left: 147,
+    top: -127,
+    left: -20,
     height: 40,
     width: 40,
   },
