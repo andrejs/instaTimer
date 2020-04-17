@@ -57,7 +57,7 @@ class CountdownTimer extends Component {
     const seconds = Math.round(count);
     const spin = this.spinValue.interpolate({
       inputRange: [0, 1],
-      outputRange: ['0deg', '360deg']
+      outputRange: ['-180deg', '180deg']
     });
 
     return (
