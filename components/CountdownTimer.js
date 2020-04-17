@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, Image, Button, Animated, Dimensions, Easing} fro
 import { ProgressCircle } from 'react-native-svg-charts';
 const {width} = Dimensions.get('screen');
 const SIZE = width * 0.9;
+import InputSpinner from "react-native-input-spinner";
 
 class CountdownTimer extends Component {
   spinValue = new Animated.Value(0);
@@ -12,7 +13,8 @@ class CountdownTimer extends Component {
 
     this.state = {
       count: 0,
-      progress: 0
+      progress: 0,
+      max: 0
     }
   }
 
@@ -30,8 +32,10 @@ class CountdownTimer extends Component {
     clearInterval(this.countdownInterval);
   }
 
-  resetCountdown = (from) => {
+  resetCountdown = () => {
     !this.countdownInterval || clearInterval(this.countdownInterval);
+
+    const from = this.props.from;
 
     this.setState({
       count: from,
@@ -61,6 +65,7 @@ class CountdownTimer extends Component {
       inputRange: [0, 1],
       outputRange: ['0deg', '360deg']
     });
+    const max = this.state.max;
 
     return (
       <View style={styles.container}>
@@ -86,8 +91,21 @@ class CountdownTimer extends Component {
           cornerRadius={1}
         />
 
+        <InputSpinner
+          max={600}
+          min={15}
+          step={15}
+          textColor={"#fff"}
+          colorMax={"#f04048"}
+          colorMin={"#40c5f4"}
+          editable={true}
+          value={this.props.from}
+          onChange={(num) => {
+            console.warn(num);
+          }}
+        />
         <Button
-            onPress={this.resetCountdown.bind(this.props.from)}
+            onPress={this.resetCountdown}
             title="Reset"
         />
       </View>
