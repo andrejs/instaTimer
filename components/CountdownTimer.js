@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import {View, Text, StyleSheet, Image, Button, Animated, Dimensions, Easing} from 'react-native';
 import { ProgressCircle } from 'react-native-svg-charts';
-const {width} = Dimensions.get('screen');
-const SIZE = width * 0.9;
 import InputSpinner from "react-native-input-spinner";
 
 class CountdownTimer extends Component {
-  spinValue = new Animated.Value(0);
-
-  constructor (props) {
+  constructor(props) {
     super(props);
+
+    this.spinValue = new Animated.Value(0);
 
     this.state = {
       count: 0,
@@ -69,7 +67,7 @@ class CountdownTimer extends Component {
     }).start();
   };
 
-  render () {
+  render() {
     const count = this.state.count;
     const progress = this.state.progress;
     const seconds = Math.round(count);
@@ -77,7 +75,6 @@ class CountdownTimer extends Component {
       inputRange: [0, 1],
       outputRange: ['0deg', '360deg']
     });
-    const max = this.state.max;
 
     return (
       <View style={styles.container}>
@@ -128,6 +125,8 @@ class CountdownTimer extends Component {
   }
 }
 
+const {width} = Dimensions.get('screen');
+const SIZE = width * 0.9;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#2c343a',
