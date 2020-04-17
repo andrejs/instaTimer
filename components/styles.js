@@ -4,7 +4,6 @@ const {width} = Dimensions.get('screen');
 const sizeScreen = width * 0.9;
 const colorPositive = '#fff';
 const colorPrimary = '#e63b09';
-const colorSecondary = '#1e2326';
 const colorSecondaryLight = '#394349';
 
 const styles = StyleSheet.create({

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  View, Text, Image, Button, Animated, Easing, TouchableOpacity,
+  View, Text, Image, Animated, Easing, TouchableOpacity,
 } from 'react-native';
 import { ProgressCircle } from 'react-native-svg-charts';
 import InputSpinner from "react-native-input-spinner";
