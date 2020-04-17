@@ -14,12 +14,12 @@ class CountdownTimer extends Component {
     this.state = {
       count: 0,
       progress: 0,
-      max: 0
+      from: this.props.from
     }
   }
 
   componentDidMount() {
-    this.resetCountdown(this.props.from);
+    this.resetCountdown();
   }
 
   componentDidUpdate() {
@@ -32,10 +32,18 @@ class CountdownTimer extends Component {
     clearInterval(this.countdownInterval);
   }
 
+  updateFrom = (from) => {
+    this.setState(prevState => (
+      Object.assign({}, prevState, {
+        from: from
+      })
+    ));
+  }
+
   resetCountdown = () => {
     !this.countdownInterval || clearInterval(this.countdownInterval);
 
-    const from = this.props.from;
+    const from = this.state.from;
 
     this.setState({
       count: from,
@@ -43,10 +51,12 @@ class CountdownTimer extends Component {
     });
 
     this.countdownInterval = setInterval(() => {
-      this.setState(prevState => ({
-        count: prevState.count - 0.1,
-        progress: 1 - (prevState.count - 0.1) / from
-      }))
+      this.setState(prevState => (
+        Object.assign({}, prevState, {
+          count: prevState.count - 0.1,
+          progress: 1 - (prevState.count - 0.1) / from
+        })
+      ));
     }, 100);
 
     this.spinValue = new Animated.Value(0);
@@ -105,7 +115,7 @@ class CountdownTimer extends Component {
           editable={true}
           value={this.props.from}
           onChange={(num) => {
-            console.warn(num);
+            this.updateFrom(num);
           }}
           style={styles.spinner}
         />
