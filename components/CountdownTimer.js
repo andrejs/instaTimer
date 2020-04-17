@@ -47,7 +47,7 @@ class CountdownTimer extends Component {
 
     Animated.timing(this.spinValue, {
       toValue: 1,
-      duration: from * 1000,
+      duration: from * 1085,
       easing: Easing.linear,
       useNativeDriver: true
     }).start();
@@ -67,9 +67,7 @@ class CountdownTimer extends Component {
         <Text style={styles.number}>{seconds}</Text>
         <Text style={styles.text}>seconds</Text>
         <View style={styles.containerAlign}>
-          <View style={styles.clock}>
-
-          </View>
+          <View style={styles.clock} />
           <Animated.View style={{transform: [{rotate: spin}] }}>
             <View style={[styles.pointer]} />
             <Image
