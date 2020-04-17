@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import {View, Text, StyleSheet, Image, Button, Animated, Easing} from 'react-native';
+import {View, Text, StyleSheet, Image, Button, Animated, Dimensions, Easing} from 'react-native';
 import { ProgressCircle } from 'react-native-svg-charts';
+const {width} = Dimensions.get('screen');
+const SIZE = width * 0.9;
 
 class CountdownTimer extends Component {
   spinValue = new Animated.Value(0);
@@ -57,14 +59,17 @@ class CountdownTimer extends Component {
     const seconds = Math.round(count);
     const spin = this.spinValue.interpolate({
       inputRange: [0, 1],
-      outputRange: ['-180deg', '180deg']
+      outputRange: ['0deg', '360deg']
     });
 
     return (
       <View style={styles.container}>
         <Text style={styles.number}>{seconds}</Text>
         <Text style={styles.text}>seconds</Text>
-        <View style={styles.clock}>
+        <View style={styles.containerAlign}>
+          <View style={styles.clock}>
+
+          </View>
           <Animated.View style={{transform: [{rotate: spin}] }}>
             <View style={[styles.pointer]} />
             <Image
@@ -96,6 +101,12 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#2c343a',
   },
+  containerAlign: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 1,
+    top: 210,
+  },
   number: {
     color: '#fff',
     fontSize: 100,
@@ -109,30 +120,24 @@ const styles = StyleSheet.create({
     marginTop: -20,
   },
   clock: {
-    alignItems: 'center',
     borderWidth: 5,
     borderColor: '#394349',
-    borderRadius: 350/2,
-    height: 350,
-    justifyContent: 'center',
-    left: -115,
-    marginTop: 80,
+    borderRadius: SIZE / 0.4,
+    height: SIZE * 0.9,
+    width: SIZE * 0.9,
     position: 'absolute',
-    top: 100,
-    width: 350,
-    zIndex: 1,
   },
   pointer: {
     backgroundColor: '#fff',
     height: 100,
     left: -5,
     position: 'absolute',
-    marginTop: -13,
+    top: -100,
     width: 6,
   },
   logo: {
     position: 'absolute',
-    top: 80,
+    top: -127,
     left: -20,
     height: 40,
     width: 40,
