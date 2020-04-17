@@ -49,6 +49,8 @@ class CountdownTimer extends Component {
       }))
     }, 100);
 
+    this.spinValue = new Animated.Value(0);
+
     Animated.timing(this.spinValue, {
       toValue: 1,
       duration: from * 1085,
