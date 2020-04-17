@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {View, Text, StyleSheet, Image, Button, Animated, Easing} from 'react-native';
 import { ProgressCircle } from 'react-native-svg-charts';
-const DURATION = 6000;
 
 class CountdownTimer extends Component {
   spinValue = new Animated.Value(0);
@@ -46,7 +45,7 @@ class CountdownTimer extends Component {
 
     Animated.timing(this.spinValue, {
       toValue: 1,
-      duration: DURATION,
+      duration: from * 1000,
       easing: Easing.linear,
       useNativeDriver: true
     }).start();
@@ -73,8 +72,8 @@ class CountdownTimer extends Component {
               source={require('../assets/logo.png')}
             />
           </Animated.View>
-
         </View>
+
         <ProgressCircle
           style={{ height: 420}}
           backgroundColor={'#1e2326'}
@@ -83,6 +82,7 @@ class CountdownTimer extends Component {
           strokeWidth={56}
           cornerRadius={1}
         />
+
         <Button
             onPress={this.resetCountdown.bind(this.props.from)}
             title="Reset"
