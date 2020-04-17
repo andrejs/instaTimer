@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {View, Text, StyleSheet, Image, Button} from 'react-native';
-import { ProgressCircle } from 'react-native-svg-charts'
+import { ProgressCircle } from 'react-native-svg-charts';
+import InputSpinner from "react-native-input-spinner";
 
 class CountdownTimer extends Component {
   constructor (props) {
@@ -8,7 +9,8 @@ class CountdownTimer extends Component {
 
     this.state = {
       count: 0,
-      progress: 0
+      progress: 0,
+      max: 0
     }
   }
 
@@ -46,6 +48,7 @@ class CountdownTimer extends Component {
     const count = this.state.count;
     const progress = this.state.progress;
     const seconds = Math.round(count);
+    const max = this.state.max;
 
     return (
       <View style={styles.container}>
@@ -65,6 +68,21 @@ class CountdownTimer extends Component {
           progressColor={'#e63b09'}
           strokeWidth={56}
           cornerRadius={1}
+        />
+        <InputSpinner
+          max={600}
+          min={15}
+          step={15}
+          textColor={"#fff"}
+          colorMax={"#f04048"}
+          colorMin={"#40c5f4"}
+          editable={true}
+          value={this.props.from}
+          onChange={(num) => {
+            this.setState({
+              max: num
+            })
+          }}
         />
         <Button
             onPress={this.resetCountdown.bind(this.props.from)}
