@@ -4,7 +4,8 @@ import { ProgressCircle } from 'react-native-svg-charts'
 
 class CountdownTimer extends Component {
   constructor (props) {
-    super(props)
+    super(props);
+
     this.state = {
       count: 0,
       progress: 0
@@ -12,7 +13,7 @@ class CountdownTimer extends Component {
   }
 
   componentDidMount() {
-    this.resetCountdown();
+    this.resetCountdown(this.props.from);
   }
 
   componentDidUpdate() {
@@ -25,21 +26,21 @@ class CountdownTimer extends Component {
     clearInterval(this.countdownInterval);
   }
 
-  resetCountdown = () => {
+  resetCountdown = (from) => {
     !this.countdownInterval || clearInterval(this.countdownInterval);
 
     this.setState({
-      count: this.props.from,
+      count: from,
       progress: 0
     });
 
     this.countdownInterval = setInterval(() => {
       this.setState(prevState => ({
         count: prevState.count - 0.1,
-        progress: 1 - (prevState.count - 0.1) / this.props.from
+        progress: 1 - (prevState.count - 0.1) / from
       }))
     }, 100);
-  }
+  };
 
   render () {
     const count = this.state.count;
@@ -66,7 +67,7 @@ class CountdownTimer extends Component {
           cornerRadius={1}
         />
         <Button
-            onPress={this.resetCountdown}
+            onPress={this.resetCountdown.bind(this.props.from)}
             title="Reset"
         />
       </View>
