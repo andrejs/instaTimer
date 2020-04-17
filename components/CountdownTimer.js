@@ -124,7 +124,7 @@ class CountdownTimer extends Component {
             step={15}
             textColor={colorPositive}
             fontSize={16}
-            editable={true}
+            editable={false}
             value={this.props.from}
             buttonLeftImage={
               <Image
