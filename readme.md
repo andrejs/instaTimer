@@ -1,16 +1,18 @@
 # Installation
 1. brew install node
 2. npm install -g expo-cli
-3. expo install react-native-svg
-4. expo install react-native-svg-charts
-5. git clone https://github.com/andrejs/instaTimer.git
+3. git clone https://github.com/andrejs/instaTimer.git
+4. cd instaTimer/
+5. npm install
+
+No need to perform the first step if recent node and npm versions installed.
 
 It might ask for CocoaPods and maybe it fails so we need to run
 cd ./instaTimer/ios && pod install
 
 # To run do
-1. `cd ./instaTimer`
-2. `expo start` (or just `npm start`)
+In the instaTimer folder:
+`expo start` (or just `npm start`)
 
 It will start the Metro Bundler and open it in a browser tab.
 
