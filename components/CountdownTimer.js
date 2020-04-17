@@ -38,7 +38,7 @@ class CountdownTimer extends Component {
         from: from
       })
     ));
-  }
+  };
 
   resetCountdown = () => {
     !this.countdownInterval || clearInterval(this.countdownInterval);
