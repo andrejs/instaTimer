@@ -107,6 +107,7 @@ class CountdownTimer extends Component {
           onChange={(num) => {
             console.warn(num);
           }}
+          style={styles.spinner}
         />
         <Button
             onPress={this.resetCountdown}
@@ -177,6 +178,9 @@ const styles = StyleSheet.create({
     height: 40,
     width: 40,
   },
+  spinner: {
+    top: -15,
+  }
 });
 
 export default CountdownTimer
