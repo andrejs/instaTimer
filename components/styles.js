@@ -2,6 +2,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 
 const {width} = Dimensions.get('screen');
 const sizeScreen = width * 0.9;
+const sizeBorder = sizeScreen / 70;
 const colorPositive = '#fff';
 const colorPrimary = '#e63b09';
 const colorSecondary = '#1c3742';
@@ -12,12 +13,13 @@ const styles = StyleSheet.create({
     backgroundColor: colorSecondary,
     flex: 1,
     alignSelf: 'stretch',
+    alignItems: 'center',
   },
   containerCounter: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    marginTop: 140,
+    marginTop: 70,
   },
   counterNr: {
     color: colorPositive,
@@ -32,18 +34,20 @@ const styles = StyleSheet.create({
     marginTop: -15,
   },
   containerClock: {
+    height: sizeScreen * 0.9,
     justifyContent: 'center',
-    top: 100,
-    marginBottom: 250,
+    width: sizeScreen * 0.9,
   },
   containerPointers: {
     alignItems: 'center',
     justifyContent: 'center',
-    top: -75,
+    height: sizeScreen * 0.9,
+    position: 'absolute',
+    width: sizeScreen * 0.9,
     zIndex: 1,
   },
   clock: {
-    borderWidth: 5,
+    borderWidth: sizeBorder,
     borderColor: colorSecondaryLight,
     borderRadius: sizeScreen / 0.4,
     height: sizeScreen * 0.9,
@@ -52,11 +56,18 @@ const styles = StyleSheet.create({
   },
   pointer: {
     backgroundColor: colorPositive,
-    height: 110,
-    left: -3,
+    height: sizeScreen * 0.3,
+    left: -sizeBorder / 2,
     position: 'absolute',
-    top: -110,
-    width: 6,
+    top: -sizeScreen * 0.3,
+    width: sizeBorder,
+  },
+  logo: {
+    position: 'absolute',
+    top: -sizeScreen * 0.37,
+    left: -sizeScreen / 20,
+    height: sizeScreen / 10,
+    width: sizeScreen / 10,
   },
   pointerDot: {
     backgroundColor: '#e56445',
@@ -72,13 +83,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: sizeScreen / 35,
   },
-  logo: {
-    position: 'absolute',
-    top: -137,
-    left: -20,
-    height: 40,
-    width: 40,
-  },
   containerButtons: {
     flex: 1,
     alignItems: 'center',
@@ -90,7 +94,7 @@ const styles = StyleSheet.create({
     width: sizeScreen * 0.9,
   },
   setTimerButtons: {
-    borderWidth: 3,
+    borderWidth: sizeBorder,
     borderColor: colorPositive,
     borderRadius: sizeScreen,
     height: 50,
