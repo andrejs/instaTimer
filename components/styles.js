@@ -71,14 +71,14 @@ const styles = StyleSheet.create({
   },
   pointerDot: {
     backgroundColor: '#e56445',
-    borderRadius: sizeScreen / 0.4,
+    borderRadius: sizeScreen,
     height: sizeScreen / 20,
     position: 'absolute',
     width: sizeScreen / 20,
   },
   pointerDotSm: {
     backgroundColor: colorPositive,
-    borderRadius: sizeScreen / 0.4,
+    borderRadius: sizeScreen,
     height: sizeScreen / 35,
     position: 'absolute',
     width: sizeScreen / 35,
@@ -90,28 +90,28 @@ const styles = StyleSheet.create({
     marginBottom: 70,
   },
   setTimer: {
-    top: 30,
+    marginTop: 30,
     width: sizeScreen * 0.9,
   },
   setTimerButtons: {
-    borderWidth: sizeBorder,
+    borderWidth: 5,
     borderColor: colorPositive,
-    borderRadius: sizeScreen,
+    borderRadius: 30,
     height: 50,
     width: 50,
   },
   resetButton: {
     backgroundColor: colorPrimary,
     borderRadius: 3,
+    height: 72,
     width: sizeScreen * 0.9,
   },
   resetText: {
     color: colorPositive,
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
     marginTop: 20,
-    marginBottom: 20,
   },
 });
 

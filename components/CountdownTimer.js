@@ -95,7 +95,7 @@ class CountdownTimer extends Component {
               backgroundColor={colorSecondaryDark}
               progress={progress}
               progressColor={colorPrimary}
-              strokeWidth={70}
+              strokeWidth={sizeScreen * 0.5}
               cornerRadius={1}
           />
           <View style={styles.containerPointers}>
@@ -125,6 +125,7 @@ class CountdownTimer extends Component {
             textColor={colorPositive}
             fontSize={16}
             editable={false}
+            disabled={count > 1}
             value={this.props.from}
             buttonLeftImage={
               <Image
